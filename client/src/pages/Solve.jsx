@@ -19,12 +19,12 @@ export default function Solve(){
                 formData.append("image", file);
                 formData.append("mode", jambMode ? "jamb" : "general");
 
-                response = await fetch("http://localhost:3000/api/solve-image",{
+                response = await fetch("https://snapsolveai-qd3qgrmi.b4a.run/:3000/api/solve-image",{
                     method: "POST",
                     body: formData,
                     });
             } else {
-                response = await fetch("http://localhost:3000/api/solve-question",{
+                response = await fetch("https://snapsolveai-qd3qgrmi.b4a.run/:3000/api/solve-question",{
                     method: "POST",
                     headers: { "Content-Type": "application/json",},
                     body: JSON.stringify({
@@ -53,25 +53,19 @@ export default function Solve(){
     };
 
     return (
-        <div className="app-container">
+        <div className="card">
             <h1 className="app-title">SnapSolve AI</h1>
-            <p>
-                Current Mode: {" "}
-                <strong>
-                    {jambMode ? "JAMB Mode" : "General Mode"}
-                </strong>
-            </p>
             <p className="app-tagline">Type your question OR snap a picture</p>
 
             {/* JAMB TOGGLE */}
             <div>
-                <p>
+                <p className="hero-text">
                     Mode: {" "}
                     <strong>{jambMode ? "JAMB Mode" : "General Mode"}</strong>
                 </p>
 
                 <button onClick={()=>setJambMode(!jambMode)}
-                    className="btn-primary"
+                    className="toggle-btn"
                     >{jambMode ? "Switch to General Mode" : "Switch to JAMB Mode"}
                 </button>
             </div>

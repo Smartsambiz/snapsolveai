@@ -12,26 +12,26 @@ export default function Result(){
     return (
         <div className="card result-card">
             <div className="result-block">
-                <h2>
+                <h2 className="result-title">
                     {jambMode ? "JAMB Solution" : "General Solution"}
                 </h2>
-                <h2 className="result-title">✅ Answer</h2>
+                <h2 className="answer">✅ Answer</h2>
                 <p>{result.answer}</p>
             </div>
 
             <div className="result-block">
 
-                <h3 className="result-title">📘 Explanation</h3>
+                <h3 className="explanation">📘 Explanation</h3>
                 <p style={{whiteSpace:"pre-line"}}>{result.explanation}</p>
 
                 {jambMode && (
                     <div className="result-block">
-                        <h3 className="result-title">💡 JAMB Tip</h3>
+                        <h3 className="tip">💡 JAMB Tip</h3>
                         <p> {result.tip} </p>
                     </div>
                 )}
 
-                <button onClick={()=> navigate("/solve")}>Try Another Question</button>
+                <button onClick={()=> navigate("/solve")} className="btn-primary">Try Another Question</button>
             </div>
             
         </div>

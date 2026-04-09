@@ -8,20 +8,20 @@ export default function Home(){
     const navigate = useNavigate();
 
     return (
-        <div className="app-container">
+        <div className="card">
             <h1 className="app-title">SnapSolve AI</h1>
             <p className="app-tagline">Snap it. Solve it.</p>
 
             {/* JAMB TOGGLE */}
             <div className="card hero-card">
-                <p>
+                <p className="hero-text">
                     Mode: {" "}
                     <strong>{jambMode ? "JAMB Mode" : "General Mode"}</strong>
                 </p>
                 <p className="hero-text">Solve academic questions with ease</p>
 
                 <button onClick={()=>setJambMode(!jambMode)}
-                    className="btn-primary"
+                    className="toggle-btn"
                 >
                     Toggle Mode
                 </button>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../App.css";
 
 function Navbar(){
@@ -7,8 +7,8 @@ function Navbar(){
             <h2 className="logo">SnapSolve AI</h2>
 
             <div className="nav-links">
-                <Link to="/" className="nav-link">Home</Link>
-                <Link to="/solve" className="nav-link">Solve</Link>
+                <NavLink to="/" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Home</NavLink>
+                <NavLink to="/solve" className={({ isActive })=> isActive ? "nav-link active" : "nav-link"}>Solve</NavLink>
             </div>
         </nav>
     )
