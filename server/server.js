@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-        origin: "https://snapsolveai-xi.vercel.app/",
+        origin: "https://snapsolveai-xi.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
 }));
