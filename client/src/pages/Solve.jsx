@@ -24,7 +24,7 @@ export default function Solve(){
                     body: formData,
                     });
             } else {
-                response = await fetch("https://snapsolveai-qd3qgrmi.b4a.run/:3000/api/solve-question",{
+                response = await fetch("https://snapsolveai-qd3qgrmi.b4a.run/api/solve-question",{
                     method: "POST",
                     headers: { "Content-Type": "application/json",},
                     body: JSON.stringify({
