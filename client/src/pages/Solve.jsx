@@ -19,12 +19,12 @@ export default function Solve(){
                 formData.append("image", file);
                 formData.append("mode", jambMode ? "jamb" : "general");
 
-                response = await fetch("https://snapsolveai-vbitp4jj.b4a.run/api/solve-image",{
+                response = await fetch("https://snapsolveai-pfwuc5hr.b4a.run/api/solve-image",{
                     method: "POST",
                     body: formData,
                     });
             } else {
-                response = await fetch("https://snapsolveai-vbitp4jj.b4a.run/api/solve-question",{
+                response = await fetch("https://snapsolveai-pfwuc5hr.b4a.run/api/solve-question",{
                     method: "POST",
                     headers: { "Content-Type": "application/json",},
                     body: JSON.stringify({
