@@ -6,7 +6,6 @@ const axios = require("axios");
 const solveRoutes = require("./routes/solveRoutes");
 const { errorHandler } = require("./middleware/errorHandler");
 
-const app = express();
 const PORT = process.env.PORT || 3000;
 
 const corsOptions = {
@@ -17,7 +16,13 @@ const corsOptions = {
   credentials: true,
 };
 
+
+const app = express();
 app.use(cors(corsOptions));
+
+app.use(express.json());
+
+
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://snapsolveai-xi.vercel.app");
@@ -26,7 +31,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());
+
 
 app.use("/api", solveRoutes);
 
@@ -36,8 +41,7 @@ app.use("/", (req, res)=>{
     res.send("Snapsolve AI Backend Running");
 });
 
-// Solve endpoint
-//app.use("/api", solveRoutes);
+
 
 // error handler
 app.use(errorHandler);
