@@ -9,11 +9,19 @@ const { errorHandler } = require("./middleware/errorHandler");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({
-        origin: "https://snapsolveai-xi.vercel.app",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true,
-}));
+const corsOptions = {
+  // MUST NOT have a trailing slash
+  origin: 'https://snapsolveai-xi.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+
+app.use(cors(corsOptions));
+
+
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 app.use("/api", solveRoutes);
