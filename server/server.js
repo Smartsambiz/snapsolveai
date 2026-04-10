@@ -20,14 +20,20 @@ const corsOptions = {
 const app = express();
 app.use(cors(corsOptions));
 
+
 app.use(express.json());
 
 
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://snapsolveai-xi.vercel.app");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header('Access-Control-Allow-Origin', 'https://snapsolveai-xi.vercel.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  // Respond to preflight immediately
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
   next();
 });
 
