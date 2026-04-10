@@ -41,6 +41,10 @@ app.use((req, res, next) => {
 
 app.use("/api", solveRoutes);
 
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', cors: 'should work' });
+});
+
 
 
 app.use("/", (req, res)=>{
