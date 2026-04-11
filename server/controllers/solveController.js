@@ -106,7 +106,7 @@ exports.solveQuestion = async (req, res, next) =>{
 
             // Save to history
         await db.query(
-            "INSERT INTO history (question, answer, explanation, tip, mode, timestamp) VALUES ($1, $2, $3, $4, $5, NOW())",
+            "INSERT INTO history (question, answer, explanation, tip, mode) VALUES ($1, $2, $3, $4, $5)",
             [question, answer, explanation, tip, mode]
         );
 
