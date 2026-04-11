@@ -29,11 +29,16 @@ export default function Home(){
 
             {/* solve button */}
 
-            <button onClick={()=> navigate("/solve")} 
+            <button
+                onClick={() => {
+                    const token = localStorage.getItem("token");
+                    navigate(token ? "/solve" : "/login");
+                }}
                 className="btn-primary"
-                >Solve a Question</button>
+            >
+                Solve a Question
+            </button>
 
-            
         </div>
     )
 }
