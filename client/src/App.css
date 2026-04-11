@@ -69,6 +69,13 @@ body {
   min-height: 100vh;
 }
 
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
 /* ── Outer container ── */
 .app-wrapper {
   min-height: 100vh;
@@ -82,6 +89,8 @@ body {
   justify-content: center;
   align-items: center;
   padding: 30px;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* ── Header ── */
@@ -451,7 +460,10 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 22px;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .nav-link {
@@ -464,6 +476,7 @@ body {
   padding: 6px 2px;
   letter-spacing: 0.02em;
   transition: color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -477,6 +490,7 @@ body {
   font-size: 0.95rem;
   font-weight: 600;
   align-self: center;
+  white-space: nowrap;
 }
 
 .nav-link.active {
@@ -553,7 +567,9 @@ body {
 @media (max-width: 500px) {
   body { padding: 12px; }
 
-  .app-container { padding: 15px; }
+  .app-shell {
+    padding: 18px 0 0;
+  }
 
   .card {
     padding: 20px 16px;
@@ -563,12 +579,35 @@ body {
   .navbar {
     padding: 12px 16px;
     border-radius: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-welcome {
+    width: 100%;
+    text-align: center;
+    order: 1;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    padding: 8px 6px;
   }
 
   .btn-primary {
     padding: 13px;
     font-size: 15px;
     width: 100%;
+  }
+
+  .upload-area {
+    width: 100%;
+    justify-content: center;
   }
 
   .app-title {
