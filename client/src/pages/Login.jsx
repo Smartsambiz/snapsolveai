@@ -15,12 +15,14 @@ function Login(){
                 headers: { "Content-Type": "application/json" },
             });
 
-            localStorage.setItem("token", response.token);
+            const data = await response.json();
 
             if(response.ok){
+                if(data.token){
+                    localStorage.setItem("token", data.token);
+                }
                 navigate("/solve");
             } else {
-                const data = await response.json();
                 alert(data.error || "Login failed");
             }
 

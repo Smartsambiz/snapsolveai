@@ -17,12 +17,18 @@ export default function Solve(){
         if(!token){
             navigate("/login");
         }
-    }, []);
+    }, [navigate]);
 
     const handleSolve = async ()=>{
+        const token = localStorage.getItem("token");
+        if(!token){
+            navigate("/login");
+            return;
+        }
+
         setLoading(true);
         try{
-             let response;
+            let response;
             if(file){
                 const formData = new FormData();
                 formData.append("image", file);
@@ -30,12 +36,18 @@ export default function Solve(){
 
                 response = await fetch("https://snapsolveai.onrender.com/api/solve-image",{
                     method: "POST",
+                    headers: {
+                        Authorization: token,
+                    },
                     body: formData,
-                    });
+                });
             } else {
                 response = await fetch("https://snapsolveai.onrender.com/api/solve-question",{
                     method: "POST",
-                    headers: { "Content-Type": "application/json",},
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: token,
+                    },
                     body: JSON.stringify({
                         question: input,
                         mode: jambMode ? "jamb" : "general",
@@ -43,19 +55,18 @@ export default function Solve(){
                 });
             }
 
-        const data = await response.json();
-        setQuestion(input);
-        setResult(data);
-        setLoading(false);
-    
-        console.log(data);
-        navigate("/result");
+            const data = await response.json();
+            setQuestion(input);
+            setResult(data);
+            setLoading(false);
+
+            console.log(data);
+            navigate("/result");
 
         } catch(error){
             const message = error.response?.data?.error || "An error occurred while solving the question. Please try again.";
             alert(message);
             console.error(error);
-            
         }
 
         setLoading(false);
