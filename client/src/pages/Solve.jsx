@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import { useEffect } from "react";
 
 export default function Solve(){
     const { setQuestion, setResult, jambMode, setJambMode } = useContext(AppContext);
@@ -9,6 +10,14 @@ export default function Solve(){
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [file, setFile]= useState(null);
+
+
+    useEffect(()=>{
+        const token = localStorage.getItem("token");
+        if(!token){
+            navigate("/login");
+        }
+    }, []);
 
     const handleSolve = async ()=>{
         setLoading(true);

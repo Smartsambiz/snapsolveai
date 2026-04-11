@@ -6,9 +6,10 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 const { solveImage } = require("../controllers/solveImageController");
 const { solveQuestion } = require("../controllers/solveController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 router.post("/solve-image", upload.single("image"), solveImage);
 
-router.post("/solve-question",  solveQuestion);
+router.post("/solve-question", authMiddleware, solveQuestion);
 
 module.exports = router
