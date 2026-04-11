@@ -1,12 +1,37 @@
 import { useEffect, useState } from "react";
 import "../App.css";
 
+const getStoredToken = () => {
+    let token = localStorage.getItem("token");
+    if(!token) return null;
+
+    token = token.trim();
+    if(token.toLowerCase().startsWith("bearer ")){
+        token = token.slice(7).trim();
+    }
+
+    if(token === "undefined" || token === "null" || token === ""){
+        localStorage.removeItem("token");
+        return null;
+    }
+
+    if((token.startsWith('"') && token.endsWith('"')) ||
+       (token.startsWith("'") && token.endsWith("'"))){
+        token = token.slice(1, -1).trim();
+    }
+
+    return token || null;
+};
+
 export default function History(){
 
     const [history, setHistory] = useState([]);
 
     useEffect(()=>{
-        fetch("https://snapsolveai.onrender.com/api/history")
+        const token = getStoredToken();
+        fetch("https://snapsolveai.onrender.com/api/history", {
+            headers: token ? { Authorization: `Bearer ${token}` } : {},
+        })
         .then(response => response.json())
         .then(data => setHistory(data))
         .catch(error => {

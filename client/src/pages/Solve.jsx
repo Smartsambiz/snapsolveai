@@ -4,6 +4,28 @@ import { useNavigate } from "react-router-dom";
 import "../App.css";
 import { useEffect } from "react";
 
+const getStoredToken = () => {
+    let token = localStorage.getItem("token");
+    if(!token) return null;
+
+    token = token.trim();
+    if(token.toLowerCase().startsWith("bearer ")){
+        token = token.slice(7).trim();
+    }
+
+    if(token === "undefined" || token === "null" || token === ""){
+        localStorage.removeItem("token");
+        return null;
+    }
+
+    if((token.startsWith('"') && token.endsWith('"')) ||
+       (token.startsWith("'") && token.endsWith("'"))){
+        token = token.slice(1, -1).trim();
+    }
+
+    return token || null;
+};
+
 export default function Solve(){
     const { setQuestion, setResult, jambMode, setJambMode } = useContext(AppContext);
     const [input, setInput] = useState("");
@@ -13,14 +35,14 @@ export default function Solve(){
 
 
     useEffect(()=>{
-        const token = localStorage.getItem("token");
+        const token = getStoredToken();
         if(!token){
             navigate("/login");
         }
     }, [navigate]);
 
     const handleSolve = async ()=>{
-        const token = localStorage.getItem("token");
+        const token = getStoredToken();
         if(!token){
             navigate("/login");
             return;

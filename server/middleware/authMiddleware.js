@@ -9,8 +9,13 @@ const authMiddleware = (req, res, next)=>{
         return res.status(401).json({ error: "No token provided" });
     }
 
-    if(token.startsWith("Bearer ")){
-        token = token.slice(7);
+    token = token.trim();
+    if(token.toLowerCase().startsWith("bearer ")){
+        token = token.slice(7).trim();
+    }
+
+    if(!token){
+        return res.status(401).json({ error: "No token provided" });
     }
 
     try{

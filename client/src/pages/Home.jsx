@@ -3,6 +3,28 @@ import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
+const getStoredToken = () => {
+    let token = localStorage.getItem("token");
+    if(!token) return null;
+
+    token = token.trim();
+    if(token.toLowerCase().startsWith("bearer ")){
+        token = token.slice(7).trim();
+    }
+
+    if(token === "undefined" || token === "null" || token === ""){
+        localStorage.removeItem("token");
+        return null;
+    }
+
+    if((token.startsWith('"') && token.endsWith('"')) ||
+       (token.startsWith("'") && token.endsWith("'"))){
+        token = token.slice(1, -1).trim();
+    }
+
+    return token || null;
+};
+
 export default function Home(){
     const { jambMode, setJambMode} = useContext(AppContext);
     const navigate = useNavigate();
@@ -31,7 +53,7 @@ export default function Home(){
 
             <button
                 onClick={() => {
-                    const token = localStorage.getItem("token");
+                    const token = getStoredToken();
                     navigate(token ? "/solve" : "/login");
                 }}
                 className="btn-primary"

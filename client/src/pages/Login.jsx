@@ -8,6 +8,7 @@ function Login(){
     const navigate = useNavigate();
 
     const handleLogin = async ()=>{
+        localStorage.removeItem("token");
         try{
             const response = await fetch("https://snapsolveai.onrender.com/api/auth/login", {
                 method: "POST",
@@ -24,6 +25,7 @@ function Login(){
                 navigate("/solve");
             } else {
                 alert(data.error || "Login failed");
+                localStorage.removeItem("token");
             }
 
         }catch(error){
