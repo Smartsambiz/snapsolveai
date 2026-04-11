@@ -22,7 +22,7 @@ export default function History(){
                 <div key={index} className="history-item">
                     <p><strong>Question:</strong> {item.question}</p>
                     <p><strong>Answer:</strong> {item.answer}</p>
-                    <p><strong>Mode:</strong> {item.explanation}</p>
+                    <p><strong>Mode:</strong> {item.mode}</p>
                 </div>
             ))}
         </div>
