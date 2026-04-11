@@ -1,6 +1,7 @@
 const cors = require("cors");
 const ollama = require("../config/ollama");
 const { formatJamb } = require("../utils/jambFormatter");
+const history = require("../config/history");
 
 
 async function detectSubject(question, deepseekClient){
@@ -103,7 +104,20 @@ exports.solveQuestion = async (req, res, next) =>{
             tip = formatted.tip;
         }
 
+            // Save to history
+        history.unshift({
+            question,
+            answer,
+            explanation,
+            tip,
+            subject,
+            mode,
+            timestamp: new Date(),
+        });
+
         res.json({ answer, explanation, tip});
+
+        
 
 
     } catch(error){

@@ -5,6 +5,7 @@ const axios = require("axios");
 
 const solveRoutes = require("./routes/solveRoutes");
 const { errorHandler } = require("./middleware/errorHandler");
+const historyRoutes = require("./routes/historyRoutes");
 
 const PORT = process.env.PORT || 3000;
 
@@ -26,7 +27,7 @@ app.use(express.json());
 
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://snapsolveai-xi.vercel.app');
+  res.header('Access-Control-Allow-Origin', 'https://snapsolveai-xi.vercel.app', 'http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
 
 
 app.use("/api", solveRoutes);
+app.use("/api/history", historyRoutes);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', cors: 'should work' });

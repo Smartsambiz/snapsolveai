@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Solve from "./pages/Solve";
 import Result from "./pages/Result";
+import History from "./pages/History";
 
 import "./App.css";
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/solve" element={<Solve />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </div>
     </div>
