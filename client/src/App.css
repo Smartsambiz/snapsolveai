@@ -471,6 +471,14 @@ body {
   transform: translateY(-1px);
 }
 
+.nav-welcome {
+  color: var(--text-main);
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 600;
+  align-self: center;
+}
+
 .nav-link.active {
   color: var(--text-main);
 }
@@ -484,6 +492,14 @@ body {
   border-radius: 1px;
   transform: scaleX(0);
   transition: transform 0.3s ease;
+}
+
+.nav-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
 }
 
 .nav-link.active::after,
