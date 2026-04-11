@@ -4,7 +4,7 @@ const db = require("../config/db");
 
 router.get("/", async (req, res) => {
     try {
-        const result = await db.query("SELECT * FROM history ORDER BY timestamp DESC");
+        const result = await db.query("SELECT * FROM history ORDER BY created_at DESC");
         res.json(result.rows);
     } catch (err) {
         console.error("Error fetching history:", err);
