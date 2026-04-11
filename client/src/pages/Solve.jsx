@@ -37,7 +37,7 @@ export default function Solve(){
                 response = await fetch("https://snapsolveai.onrender.com/api/solve-image",{
                     method: "POST",
                     headers: {
-                        Authorization: token,
+                        Authorization: `Bearer ${token}`,
                     },
                     body: formData,
                 });
@@ -46,7 +46,7 @@ export default function Solve(){
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: token,
+                        Authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify({
                         question: input,
