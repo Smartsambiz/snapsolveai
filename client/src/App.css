@@ -491,6 +491,27 @@ body {
   transform: scaleX(1);
 }
 
+.register-link {
+  color: var(--primary);
+  font-weight: 500;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  color: var(--primary-lt);
+}
+
+.login-link {
+  color: var(--secondary);
+  font-weight: 500;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.login-link:hover {
+  color: var(--primary-lt);
+}
+
 /* ── Page center ── */
 .page-center {
   min-height: 100vh;

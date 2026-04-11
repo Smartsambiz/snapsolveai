@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import "../App.css";
 
 
 function Login(){
@@ -16,20 +17,28 @@ function Login(){
                 headers: { "Content-Type": "application/json" },
             });
 
-            const data = await response.json();
+            let data = null;
+            try {
+                data = await response.json();
+            } catch(parseError) {
+                console.error("Login response parse failed", parseError);
+            }
 
-            if(response.ok){
-                if(data.token){
-                    localStorage.setItem("token", data.token);
-                }
+            console.log("Login response", response.status, data);
+
+            if(response.ok && data?.token){
+                localStorage.setItem("token", data.token);
                 navigate("/solve");
             } else {
-                alert(data.error || "Login failed");
+                const errorMessage = data?.error || response.statusText || "Login failed";
+                console.error("Login failed", response.status, errorMessage, data);
+                alert(errorMessage);
                 localStorage.removeItem("token");
             }
 
         }catch(error){
-            alert("Login failed.")
+            console.error("Login fetch error", error);
+            alert(error.message || "Login failed.")
         }
     }
 
@@ -56,7 +65,7 @@ function Login(){
             <button onClick={handleLogin} className="btn-primary">
                 Login
             </button>
-            <p>Don't have an account? <Link to="/register">Register here</Link></p>
+            <p>Don't have an account? <Link to="/register" className="register-link">Register here</Link></p>
         </div>
     )
 }

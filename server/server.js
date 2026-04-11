@@ -6,6 +6,7 @@ const axios = require("axios");
 const solveRoutes = require("./routes/solveRoutes");
 const { errorHandler } = require("./middleware/errorHandler");
 const historyRoutes = require("./routes/historyRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const PORT = process.env.PORT || 3000;
 
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
 
 app.use("/api", solveRoutes);
 app.use("/api/history", historyRoutes);
+app.use("/api/auth", authRoutes);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', cors: 'should work' });
